@@ -11,9 +11,6 @@ group by customer_id;
 
 -- 3. What was the first item from the menu purchased by each customer?
 
-select * from menu m
-join sales s on m.product_id = s.product_id
-join members mr on s.customer_id = mr.customer_id order by order_date;
 select customer_id, order_date, group_concat( product_name)  from sales s 
 join menu m on s.product_id = m.product_id
 where order_date in (select min(order_date) from sales)
